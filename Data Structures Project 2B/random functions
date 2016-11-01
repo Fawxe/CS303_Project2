@@ -3,7 +3,8 @@
 int weight(customer cus1, customer cus2)
 {
 int weight=0;
-parellel_for(int i=0; i<cus1.getRating().size();i++)
+#pragma omp parellel_for
+for (int i=0; i<cus1.getRating().size();i++)
 {
 for (intj=0;j<cus2.getRatings().size();j++)
 {
@@ -25,4 +26,34 @@ temp=5+temp;
 return temp;
 }
 
-void
+void find_uncommon(customer cus1, customer cus2, vector& uncommon)
+{
+bool common=false;
+#pragma omp parallel for
+for (int i=0; i<cus2.size();i++)
+{
+for (int j=0; j<cus1.size();j++)
+{
+if cus1.book[j].title()==cus2.book[i].title()
+common=true;
+}
+if (common==false)
+uncommon.pushback(cus2.book[j];
+}
+
+
+
+
+
+//Menu Function
+
+Display_uncommon(vector uncommon, array highestRated)
+{
+if (uncommon.size()>=3)
+cou<<uncommon[0]<<uncommon[1]<<uncommon[2]<<endl;
+else if (uncommon.size()==2)
+cou<<uncommon[0]<<uncommon[1]<<highestRated[0]<<endl;
+else if (uncommon.size()==1)
+cou<<uncommon[0]<<highestRated[0]<<highestRated[1]<<endl;
+else
+cou<<highestRated[0]<<highestRated[1]<<highestRated[2]<<endl;
